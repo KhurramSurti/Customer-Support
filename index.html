@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Resolution Desk — by Surti</title>
-<style>html,body,#root{margin:0;padding:0;min-height:100%;} body{background:#F2F3F0;}</style>
+<title>Resolution Desk — Surti</title>
+<style>html,body,#root{margin:0;padding:0;min-height:100%;} body{background:#07110E;}</style>
 </head>
 <body>
 <div id="root"></div>
@@ -17,32 +17,30 @@ const {
   useRef
 } = React;
 
-// ---- Brand logo (embedded, white monogram for dark surfaces) -----------
-const LOGO = "data:image/png;base64,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";
+// ---- Brand monogram (embedded white mark) ------------------------------
+const LOGO = "data:image/png;base64,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";
 const MODEL = "claude-sonnet-5";
 
-// ---- Palette -----------------------------------------------------------
-const T = {
-  bg: "#F2F3F0",
-  surface: "#FFFFFF",
-  ink: "#172420",
-  muted: "#64726B",
-  faint: "#96A29B",
-  line: "#E4E8E4",
-  emerald: "#0F7A66",
-  emeraldDark: "#0A5A4A",
-  emeraldSoft: "#E8F3EF",
-  headerA: "#0C2019",
-  headerB: "#0A1712",
-  gold: "#C6A455",
-  goldSoft: "rgba(198,164,85,0.30)",
-  amber: "#A6641C",
-  amberSoft: "#F7EEE1",
-  red: "#A83A31",
-  redSoft: "#F7E7E4"
+// ---- Tokens: Midnight Concierge ---------------------------------------
+const C = {
+  void: "#07110E",
+  desk: "#0C1915",
+  panel: "#11241D",
+  panelHi: "#162E25",
+  brass: "#D4B675",
+  brassLo: "rgba(212,182,117,0.18)",
+  brassMid: "rgba(212,182,117,0.34)",
+  ivory: "#F7F3E9",
+  paper: "#FBF8F0",
+  paperInk: "#1A211D",
+  paperMute: "#6B7671",
+  emerald: "#2F9E7E",
+  emeraldDeep: "#1B6E58",
+  light: "#E9EDE9",
+  mute: "#8FA098",
+  rose: "#C97B6B",
+  amberInk: "#8A6A2F"
 };
-
-// ---- System prompt -----------------------------------------------------
 const SYSTEM_PROMPT = `You are a senior customer support specialist for an online store (the store resells/dropships physical products). You are warm, calm, genuinely empathetic, and very good at RESOLVING issues — not deflecting them.
 
 The customer's message will usually be given to you as one or more SCREENSHOT IMAGES (chat/email/marketplace messages). Read the images carefully and understand the full complaint, including any order details visible in them.
@@ -74,6 +72,14 @@ Return ONLY a raw JSON object (no markdown, no backticks, no commentary) with EX
   "recommended_action": "<one or two lines telling the owner what to actually DO operationally>",
   "follow_up": "<one short follow-up message to send once the issue is resolved>"
 }`;
+const TRANSLATE_PROMPT = register => `You are an expert translator from Urdu / Roman Urdu (Urdu written in Latin script) into English. The user is chatting with people on WhatsApp and similar apps and types their reply in Roman Urdu. Translate it into natural, fluent, everyday English exactly as a real person would write it in a normal chat — not literal, not stiff, not corporate. Preserve the meaning, tone, warmth and intent. Match this register: ${register}. Keep it roughly the same length. Do not add greetings or content that isn't there. Output ONLY the English translation — no quotes, no notes, no explanation.`;
+const STRATEGIST_PROMPT = `You are an elite customer-support STRATEGIST advising a store owner (dropshipping). The owner will describe — often in Roman Urdu — what a customer is saying and what the real situation is. Give sharp, practical, street-smart ideas to calm, satisfy and retain the customer and resolve the dispute in the store's favour where possible.
+
+Reply in the SAME language the owner uses (Roman Urdu or English). Be concrete: give the exact wording to send, what to offer (replacement, partial refund, small discount, expedited reship, goodwill coupon), how to frame it, how to de-escalate, and how to set polite boundaries with unreasonable customers.
+
+HARD RULE: never fabricate lies or false claims to deceive the customer (no fake tracking, no invented stories about where the product came from, no denying a real defect). Lies get exposed and trigger chargebacks, platform bans and bad reviews — they cost far more than they save. Whenever the owner wants to "make an excuse", give the strongest HONEST framing or a genuine goodwill gesture that reaches the same goal: a satisfied customer who does not dispute. You are cunning about persuasion and diplomacy, not about deception.
+
+Keep answers tight and usable — a couple of options with the actual wording, not essays.`;
 const TONES = [{
   id: "warm",
   label: "Warm & apologetic"
@@ -86,7 +92,7 @@ const TONES = [{
 }];
 const REGISTERS = [{
   id: "casual",
-  label: "Casual (WhatsApp)"
+  label: "Casual"
 }, {
   id: "neutral",
   label: "Neutral"
@@ -94,34 +100,23 @@ const REGISTERS = [{
   id: "formal",
   label: "Formal"
 }];
-const TRANSLATE_PROMPT = register => `You are an expert translator from Urdu / Roman Urdu (Urdu written in Latin script) into English. The user is chatting with people on WhatsApp and similar apps and types their reply in Roman Urdu. Translate it into natural, fluent, everyday English exactly as a real person would write it in a normal chat — not literal, not stiff, not corporate. Preserve the meaning, tone, warmth and intent. Match this register: ${register}. Keep it roughly the same length. Do not add greetings or content that isn't there. Output ONLY the English translation — no quotes, no notes, no explanation.`;
-const NAMES = ["Jane Smith", "Emily Carter", "Sarah Wilson", "Olivia Bennett", "Sophia Turner"];
-const STRATEGIST_PROMPT = `You are an elite customer-support STRATEGIST advising a store owner (dropshipping). The owner will describe — often in Roman Urdu — what a customer is saying and what the real situation is. Give sharp, practical, street-smart ideas to calm, satisfy and retain the customer and resolve the dispute in the store's favour where possible.
-
-Reply in the SAME language the owner uses (Roman Urdu or English). Be concrete: give the exact wording to send, what to offer (replacement, partial refund, small discount, expedited reship, goodwill coupon), how to frame it, how to de-escalate, and how to set polite boundaries with unreasonable customers.
-
-HARD RULE: never fabricate lies or false claims to deceive the customer (no fake tracking, no invented stories about where the product came from, no denying a real defect). Lies get exposed and trigger chargebacks, platform bans and bad reviews — they cost far more than they save. Whenever the owner wants to "make an excuse", give the strongest HONEST framing or a genuine goodwill gesture that reaches the same goal: a satisfied customer who does not dispute. You are cunning about persuasion and diplomacy, not about deception.
-
-Keep answers tight and usable — a couple of options with the actual wording, not essays.`;
+const NAMES = ["Jane Smith", "Emily Carter", "Sarah Wilson", "Olivia Bennett", "Sophia Turner", "Grace Miller"];
 function extractJSON(text) {
   const cleaned = text.replace(/```json/gi, "").replace(/```/g, "").trim();
-  const start = cleaned.indexOf("{");
-  const end = cleaned.lastIndexOf("}");
-  if (start === -1 || end === -1) throw new Error("No JSON found");
-  return JSON.parse(cleaned.slice(start, end + 1));
+  const s = cleaned.indexOf("{"),
+    e = cleaned.lastIndexOf("}");
+  if (s === -1 || e === -1) throw new Error("No JSON found");
+  return JSON.parse(cleaned.slice(s, e + 1));
 }
 function fileToImage(file) {
   return new Promise((resolve, reject) => {
     const r = new FileReader();
-    r.onload = () => {
-      const dataUrl = r.result;
-      resolve({
-        name: file.name,
-        media_type: file.type || "image/png",
-        base64: String(dataUrl).split(",")[1],
-        preview: dataUrl
-      });
-    };
+    r.onload = () => resolve({
+      name: file.name,
+      media_type: file.type || "image/png",
+      base64: String(r.result).split(",")[1],
+      preview: r.result
+    });
     r.onerror = () => reject(new Error("read failed"));
     r.readAsDataURL(file);
   });
@@ -151,10 +146,11 @@ function SupportDesk() {
   const [result, setResult] = useState(null);
   const [copied, setCopied] = useState(false);
   const fileRef = useRef(null);
+  const chatEndRef = useRef(null);
   useEffect(() => {
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap";
+    l.href = "https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap";
     document.head.appendChild(l);
     return () => {
       try {
@@ -162,15 +158,25 @@ function SupportDesk() {
       } catch (e) {}
     };
   }, []);
-  async function onFiles(fileList) {
-    const files = Array.from(fileList).filter(f => f.type.startsWith("image/"));
+  useEffect(() => {
+    if (chatEndRef.current) chatEndRef.current.scrollIntoView({
+      behavior: "smooth"
+    });
+  }, [chat, chatLoading]);
+  async function onFiles(list) {
+    const files = Array.from(list).filter(f => f.type.startsWith("image/"));
     const loaded = await Promise.all(files.map(fileToImage));
-    setImages(prev => [...prev, ...loaded]);
+    setImages(p => [...p, ...loaded]);
   }
-  function removeImage(i) {
-    setImages(prev => prev.filter((_, idx) => idx !== i));
-  }
+  const removeImage = i => setImages(p => p.filter((_, idx) => idx !== i));
   const canGenerate = images.length > 0 || customerText.trim().length > 0;
+  function copyText(txt) {
+    if (!txt) return;
+    navigator.clipboard.writeText(txt);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  }
+  const signed = body => body + (selectedName ? "\n\nWarm regards,\n" + selectedName : "");
   async function generate(mode = "full") {
     if (mode === "full" && !canGenerate) return;
     setLoading(true);
@@ -216,16 +222,10 @@ function SupportDesk() {
       const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
       setResult(extractJSON(text));
     } catch (e) {
-      setError("Couldn't generate a reply. If the owner set an access code, enter it above. Otherwise check billing/connection and try again.");
+      setError("The reply didn't come through. Check your connection and try again.");
     } finally {
       setLoading(false);
     }
-  }
-  function copyText(txt) {
-    if (!txt) return;
-    navigator.clipboard.writeText(txt);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1600);
   }
   async function sendChat() {
     const q = chatInput.trim();
@@ -237,7 +237,6 @@ function SupportDesk() {
     setChat(next);
     setChatInput("");
     setChatLoading(true);
-    setError("");
     try {
       const res = await fetch("/api/generate", {
         method: "POST",
@@ -298,86 +297,72 @@ function SupportDesk() {
       const data = await res.json();
       if (!res.ok) throw new Error(data && data.error || "request failed");
       let text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n").trim();
-      text = text.replace(/^["'“”]+|["'“”]+$/g, "").trim();
-      setTrResult(text);
+      setTrResult(text.replace(/^["'“”]+|["'“”]+$/g, "").trim());
     } catch (e) {
-      setError("Couldn't translate. If an access code is required, enter it above, then try again.");
+      setError("The translation didn't come through. Check your connection and try again.");
     } finally {
       setLoading(false);
     }
   }
-  const sc = result?.sentiment === "Angry" ? {
-    bg: T.redSoft,
-    fg: T.red
-  } : result?.sentiment === "Frustrated" ? {
-    bg: T.amberSoft,
-    fg: T.amber
-  } : {
-    bg: T.emeraldSoft,
-    fg: T.emeraldDark
-  };
+  const sentTint = result?.sentiment === "Angry" ? C.rose : result?.sentiment === "Frustrated" ? C.brass : C.emerald;
   return /*#__PURE__*/React.createElement("div", {
-    style: S.page
-  }, /*#__PURE__*/React.createElement("style", null, css), /*#__PURE__*/React.createElement("header", {
-    style: S.header
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.headerGlow
+    style: St.root
+  }, /*#__PURE__*/React.createElement("style", null, css), /*#__PURE__*/React.createElement("div", {
+    style: St.grain
   }), /*#__PURE__*/React.createElement("div", {
-    style: S.brandWrap
+    style: St.glowA
+  }), /*#__PURE__*/React.createElement("div", {
+    style: St.glowB
+  }), /*#__PURE__*/React.createElement("header", {
+    style: St.header,
+    className: "rise"
   }, /*#__PURE__*/React.createElement("div", {
-    style: S.medallion
+    style: St.lockup
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.seal
   }, /*#__PURE__*/React.createElement("span", {
-    style: S.medRing
+    style: St.sealRing
+  }), /*#__PURE__*/React.createElement("span", {
+    style: St.sealRing2
   }), /*#__PURE__*/React.createElement("img", {
     src: LOGO,
-    alt: "logo",
-    style: S.logoImg
+    alt: "",
+    style: St.sealMark
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: S.brandTitle
-  }, "Resolution\xA0Desk"), /*#__PURE__*/React.createElement("div", {
-    style: S.brandSub
-  }, "Concierge-grade replies for your store — screenshot in, polished English out"))), /*#__PURE__*/React.createElement("div", {
-    style: S.credit
+    style: St.eyebrow
+  }, "Concierge support suite"), /*#__PURE__*/React.createElement("h1", {
+    style: St.wordmark
+  }, "Resolution Desk"))), /*#__PURE__*/React.createElement("div", {
+    style: St.plaque
   }, /*#__PURE__*/React.createElement("span", {
-    style: S.creditLabel
+    style: St.plaqueTop
   }, "Developed by"), /*#__PURE__*/React.createElement("span", {
-    style: S.creditName
+    style: St.plaqueName
   }, "Surti"))), /*#__PURE__*/React.createElement("div", {
-    style: S.tabs
-  }, /*#__PURE__*/React.createElement("button", {
-    style: {
-      ...S.tab,
-      ...(tab === "support" ? S.tabOn : {})
-    },
+    style: St.rule
+  }), /*#__PURE__*/React.createElement("nav", {
+    style: St.tabs,
+    className: "rise d1"
+  }, [["support", "Write a reply"], ["strategy", "Strategy room"], ["translate", "Urdu → English"]].map(([id, label]) => /*#__PURE__*/React.createElement("button", {
+    key: id,
     onClick: () => {
-      setTab("support");
+      setTab(id);
       setError("");
-    }
-  }, "Support reply"), /*#__PURE__*/React.createElement("button", {
-    style: {
-      ...S.tab,
-      ...(tab === "strategy" ? S.tabOn : {})
     },
-    onClick: () => {
-      setTab("strategy");
-      setError("");
-    }
-  }, "Strategy chat"), /*#__PURE__*/React.createElement("button", {
+    className: "tabBtn",
     style: {
-      ...S.tab,
-      ...(tab === "translate" ? S.tabOn : {})
-    },
-    onClick: () => {
-      setTab("translate");
-      setError("");
+      ...St.tab,
+      ...(tab === id ? St.tabOn : {})
     }
-  }, "Urdu → English")), /*#__PURE__*/React.createElement("div", {
-    style: S.accessRow
+  }, label, tab === id && /*#__PURE__*/React.createElement("span", {
+    style: St.tabUnder
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: St.accessRow
   }, /*#__PURE__*/React.createElement("input", {
     type: "password",
-    className: "ta",
-    style: S.accessInput,
-    placeholder: "Access code (only if the owner set one)",
+    className: "fld",
+    style: St.accessInput,
+    placeholder: "Access code",
     value: access,
     onChange: e => {
       setAccess(e.target.value);
@@ -386,32 +371,38 @@ function SupportDesk() {
       } catch (x) {}
     }
   })), tab === "support" && /*#__PURE__*/React.createElement("div", {
-    className: "support-grid",
-    style: S.grid
+    className: "grid2 rise d2",
+    style: St.grid
   }, /*#__PURE__*/React.createElement("section", {
-    style: S.card
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.stepHead
-  }, /*#__PURE__*/React.createElement("span", {
-    style: S.stepNo
-  }, "01"), /*#__PURE__*/React.createElement("span", {
-    style: S.stepLabel
-  }, "Customer's message — screenshot(s)")), /*#__PURE__*/React.createElement("div", {
+    style: St.panel
+  }, /*#__PURE__*/React.createElement(SectionHead, {
+    k: "A",
+    title: "The customer's message",
+    hint: "Screenshots or text"
+  }), /*#__PURE__*/React.createElement("div", {
     className: "drop",
-    style: S.drop,
+    style: St.drop,
     onClick: () => fileRef.current?.click(),
     onDragOver: e => e.preventDefault(),
     onDrop: e => {
       e.preventDefault();
       onFiles(e.dataTransfer.files);
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.dropIcon
-  }, "⇪"), /*#__PURE__*/React.createElement("div", {
-    style: S.dropText
-  }, "Click or drag screenshots here"), /*#__PURE__*/React.createElement("div", {
-    style: S.dropSub
-  }, "Add more than one image if needed"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "26",
+    height: "26",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: C.brass,
+    strokeWidth: "1.3",
+    strokeLinecap: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M12 16V4M12 4l-4 4M12 4l4 4M4 17v2a1 1 0 001 1h14a1 1 0 001-1v-2"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: St.dropText
+  }, "Drop screenshots here"), /*#__PURE__*/React.createElement("div", {
+    style: St.dropSub
+  }, "or click to browse · several at once is fine"), /*#__PURE__*/React.createElement("input", {
     ref: fileRef,
     type: "file",
     accept: "image/*",
@@ -421,226 +412,191 @@ function SupportDesk() {
     },
     onChange: e => onFiles(e.target.files)
   })), images.length > 0 && /*#__PURE__*/React.createElement("div", {
-    style: S.thumbRow
+    style: St.thumbs
   }, images.map((img, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
-    style: S.thumbWrap
+    style: St.thumbWrap,
+    className: "thumb"
   }, /*#__PURE__*/React.createElement("img", {
     src: img.preview,
-    alt: img.name,
-    style: S.thumb
+    alt: "",
+    style: St.thumb
   }), /*#__PURE__*/React.createElement("button", {
-    style: S.thumbX,
+    style: St.thumbX,
     onClick: () => removeImage(i),
-    title: "Remove"
+    "aria-label": "Remove"
   }, "×")))), /*#__PURE__*/React.createElement("div", {
-    style: S.subLabel
-  }, "Or type the message instead ", /*#__PURE__*/React.createElement("span", {
-    style: S.opt
-  }, "(optional)")), /*#__PURE__*/React.createElement("textarea", {
-    className: "ta",
+    style: St.micro
+  }, "Or paste the text"), /*#__PURE__*/React.createElement("textarea", {
+    className: "fld",
     style: {
-      ...S.textarea,
-      minHeight: 66
+      ...St.fld,
+      minHeight: 62
     },
-    placeholder: "If you don't have a screenshot, paste the text here…",
     value: customerText,
-    onChange: e => setCustomerText(e.target.value)
-  }), /*#__PURE__*/React.createElement("div", {
+    onChange: e => setCustomerText(e.target.value),
+    placeholder: "No screenshot? Paste what they wrote…"
+  }), /*#__PURE__*/React.createElement(SectionHead, {
+    k: "B",
+    title: "Aap ka idea",
+    hint: "Roman Urdu mein likhein"
+  }), /*#__PURE__*/React.createElement("textarea", {
+    className: "fld",
     style: {
-      ...S.stepHead,
-      marginTop: 22
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: S.stepNo
-  }, "02"), /*#__PURE__*/React.createElement("span", {
-    style: S.stepLabel
-  }, "Aap ka idea — Urdu / Roman Urdu mein")), /*#__PURE__*/React.createElement("textarea", {
-    className: "ta",
-    style: S.textarea,
-    placeholder: "Misaal: 'Isay bolo replacement bhej rahe hain, 3 din mein pohanch jayega, aur damage ki ek photo maang lo.'",
+      ...St.fld,
+      minHeight: 92
+    },
     value: idea,
-    onChange: e => setIdea(e.target.value)
+    onChange: e => setIdea(e.target.value),
+    placeholder: "Misaal: 'Isay bolo replacement bhej rahe hain, 3 din mein pohanch jayega, aur damage ki ek photo maang lo.'"
+  }), /*#__PURE__*/React.createElement(SectionHead, {
+    k: "C",
+    title: "How it should sound"
   }), /*#__PURE__*/React.createElement("div", {
-    style: S.subLabel
-  }, "Tone"), /*#__PURE__*/React.createElement("div", {
-    style: S.toneRow
+    style: St.chips
   }, TONES.map(t => /*#__PURE__*/React.createElement("button", {
     key: t.id,
-    className: "tone",
+    className: "chip",
     style: {
-      ...S.tone,
-      ...(tone === t.id ? S.toneActive : {})
+      ...St.chip,
+      ...(tone === t.id ? St.chipOn : {})
     },
     onClick: () => setTone(t.id)
   }, t.label))), /*#__PURE__*/React.createElement("div", {
-    style: S.subLabel
+    style: St.micro
   }, "Sign as ", /*#__PURE__*/React.createElement("span", {
-    style: S.opt
-  }, "(optional — click a name to add it at the end)")), /*#__PURE__*/React.createElement("div", {
-    style: S.toneRow
+    style: St.opt
+  }, "— optional, click to add a name")), /*#__PURE__*/React.createElement("div", {
+    style: St.nameGrid
   }, NAMES.map(n => /*#__PURE__*/React.createElement("button", {
     key: n,
-    className: "tone",
+    className: "chip",
     style: {
-      ...S.tone,
-      ...(selectedName === n ? S.toneActive : {})
+      ...St.chip,
+      ...St.nameChip,
+      ...(selectedName === n ? St.chipOn : {})
     },
     onClick: () => setSelectedName(selectedName === n ? "" : n)
   }, n))), /*#__PURE__*/React.createElement("button", {
-    className: "gen",
+    className: "cta",
     style: {
-      ...S.generate,
-      opacity: canGenerate ? 1 : 0.5
+      ...St.cta,
+      ...(canGenerate ? {} : St.ctaOff)
     },
     onClick: () => generate("full"),
     disabled: loading || !canGenerate
-  }, loading ? "Drafting reply…" : "Generate English reply"), /*#__PURE__*/React.createElement("button", {
-    className: "hold",
-    style: S.holding,
+  }, loading ? "Composing…" : "Compose the reply"), /*#__PURE__*/React.createElement("button", {
+    className: "ghost",
+    style: St.ghost,
     onClick: () => generate("holding"),
     disabled: loading
-  }, "Quick holding reply — “a representative will contact you shortly”"), error && /*#__PURE__*/React.createElement("div", {
-    style: S.error
+  }, "Send a holding note instead"), error && /*#__PURE__*/React.createElement("div", {
+    style: St.err
   }, error)), /*#__PURE__*/React.createElement("section", {
+    style: St.letterCol
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.letter,
+    className: "letter"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.letterHead
+  }, /*#__PURE__*/React.createElement("img", {
+    src: LOGO,
+    alt: "",
+    style: St.letterMark
+  }), /*#__PURE__*/React.createElement("div", {
+    style: St.letterHeadRule
+  }), /*#__PURE__*/React.createElement("span", {
+    style: St.letterHeadTxt
+  }, "Customer correspondence")), !result && !loading && /*#__PURE__*/React.createElement("div", {
+    style: St.await
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.awaitGlyph
+  }, "✒"), /*#__PURE__*/React.createElement("div", {
+    style: St.awaitTitle
+  }, "Nothing on the desk yet"), /*#__PURE__*/React.createElement("div", {
+    style: St.awaitText
+  }, "Add the customer's screenshot on the left and tell me in Urdu what you want to say. The finished reply will be set here, ready to send.")), loading && /*#__PURE__*/React.createElement("div", {
+    style: St.await
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.awaitTitle
+  }, "Composing…"), /*#__PURE__*/React.createElement("div", {
+    style: St.skelWrap
+  }, [92, 100, 84, 96, 62].map((w, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "skel",
     style: {
-      ...S.card,
-      background: result ? T.surface : "#FBFCFB"
+      ...St.skel,
+      width: w + "%"
     }
-  }, !result && !loading && /*#__PURE__*/React.createElement("div", {
-    style: S.empty
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.emptyMark
-  }, "“ ”"), /*#__PURE__*/React.createElement("div", {
-    style: S.emptyTitle
-  }, "Your reply appears here"), /*#__PURE__*/React.createElement("div", {
-    style: S.emptyText
-  }, "Upload the customer's screenshot, tell me in Urdu what to say, and receive a ready-to-send, polished reply — with a read on the situation and the right next move.")), loading && /*#__PURE__*/React.createElement("div", {
-    style: S.empty
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.emptyText
-  }, "Reading the screenshots and drafting…")), result && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: S.metaRow
+  })))), result && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: St.stamps
   }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      ...S.tag,
-      background: T.emeraldSoft,
-      color: T.emeraldDark
-    }
+    style: St.stamp
   }, result.category), /*#__PURE__*/React.createElement("span", {
     style: {
-      ...S.tag,
-      background: sc.bg,
-      color: sc.fg
+      ...St.stamp,
+      borderColor: sentTint,
+      color: sentTint
     }
   }, result.sentiment)), /*#__PURE__*/React.createElement("div", {
-    style: S.replyLabel
-  }, "Reply to customer"), /*#__PURE__*/React.createElement("div", {
-    style: S.replyBox
-  }, result.reply + (selectedName ? "\n\nWarm regards,\n" + selectedName : "")), /*#__PURE__*/React.createElement("button", {
-    className: "copy",
-    style: S.copyBtn,
-    onClick: () => copyText(result.reply + (selectedName ? "\n\nWarm regards,\n" + selectedName : ""))
-  }, copied ? "Copied ✓" : "Copy reply"), /*#__PURE__*/React.createElement("div", {
-    style: S.coachBlock
+    style: St.letterBody
+  }, signed(result.reply)), /*#__PURE__*/React.createElement("button", {
+    className: "copyBtn",
+    style: St.copyBtn,
+    onClick: () => copyText(signed(result.reply))
+  }, copied ? "Copied ✓" : "Copy reply"))), result && /*#__PURE__*/React.createElement("div", {
+    style: St.notes,
+    className: "rise"
   }, /*#__PURE__*/React.createElement("div", {
-    style: S.coachLabel
-  }, "What to do · internal"), /*#__PURE__*/React.createElement("div", {
-    style: S.coachText
+    style: St.note
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.noteK
+  }, "Do this next"), /*#__PURE__*/React.createElement("div", {
+    style: St.noteV
   }, result.recommended_action)), /*#__PURE__*/React.createElement("div", {
-    style: S.coachBlock
+    style: St.note
   }, /*#__PURE__*/React.createElement("div", {
-    style: S.coachLabel
-  }, "Follow-up once resolved"), /*#__PURE__*/React.createElement("div", {
-    style: S.coachText
-  }, result.follow_up))))), tab === "translate" && /*#__PURE__*/React.createElement("div", {
-    style: S.translateWrap
+    style: St.noteK
+  }, "Once it's resolved"), /*#__PURE__*/React.createElement("div", {
+    style: St.noteV
+  }, result.follow_up))))), tab === "strategy" && /*#__PURE__*/React.createElement("div", {
+    style: St.single,
+    className: "rise d2"
   }, /*#__PURE__*/React.createElement("section", {
-    style: S.card
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.stepHead
-  }, /*#__PURE__*/React.createElement("span", {
-    style: S.stepNo
-  }, "UR"), /*#__PURE__*/React.createElement("span", {
-    style: S.stepLabel
-  }, "Aap ka jawab — Roman Urdu mein likhein")), /*#__PURE__*/React.createElement("textarea", {
-    className: "ta",
-    style: {
-      ...S.textarea,
-      minHeight: 130
-    },
-    placeholder: "Misaal: 'Bhai order kal ship ho jayega, thora sa delay hua hai, sorry.'",
-    value: urduText,
-    onChange: e => setUrduText(e.target.value)
+    style: St.panel
+  }, /*#__PURE__*/React.createElement(SectionHead, {
+    k: "?",
+    title: "Strategy room",
+    hint: "Situation batayein — main ideas doonga"
   }), /*#__PURE__*/React.createElement("div", {
-    style: S.subLabel
-  }, "Register"), /*#__PURE__*/React.createElement("div", {
-    style: S.toneRow
-  }, REGISTERS.map(r => /*#__PURE__*/React.createElement("button", {
-    key: r.id,
-    className: "tone",
-    style: {
-      ...S.tone,
-      ...(trReg === r.id ? S.toneActive : {})
-    },
-    onClick: () => setTrReg(r.id)
-  }, r.label))), /*#__PURE__*/React.createElement("button", {
-    className: "gen",
-    style: {
-      ...S.generate,
-      opacity: urduText.trim() ? 1 : 0.5
-    },
-    onClick: translate,
-    disabled: loading || !urduText.trim()
-  }, loading ? "Translating…" : "Translate to English"), error && /*#__PURE__*/React.createElement("div", {
-    style: S.error
-  }, error), trResult && /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 22
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.replyLabel
-  }, "English"), /*#__PURE__*/React.createElement("div", {
-    style: S.replyBox
-  }, trResult), /*#__PURE__*/React.createElement("button", {
-    className: "copy",
-    style: S.copyBtn,
-    onClick: () => copyText(trResult)
-  }, copied ? "Copied ✓" : "Copy English")))), tab === "strategy" && /*#__PURE__*/React.createElement("div", {
-    style: S.translateWrap
-  }, /*#__PURE__*/React.createElement("section", {
-    style: S.card
-  }, /*#__PURE__*/React.createElement("div", {
-    style: S.stepHead
-  }, /*#__PURE__*/React.createElement("span", {
-    style: S.stepNo
-  }, "AI"), /*#__PURE__*/React.createElement("span", {
-    style: S.stepLabel
-  }, "Strategy chat — situation batayein, smart ideas lein")), /*#__PURE__*/React.createElement("div", {
-    style: S.chatBox
+    style: St.chatBox
   }, chat.length === 0 && /*#__PURE__*/React.createElement("div", {
-    style: S.chatHint
-  }, "Misaal: \"Customer keh raha hai item damaged aaya. Woh full refund chahta hai lekin main replacement par mana lena chahta hoon — kaise baat karoon?\" — poori situation batayein, main ready wording aur options doonga."), chat.map((m, i) => /*#__PURE__*/React.createElement("div", {
+    style: St.chatHint
+  }, "Poori situation likhein, jaise:", /*#__PURE__*/React.createElement("div", {
+    style: St.chatEg
+  }, "“Customer keh raha hai item damaged aaya. Woh full refund chahta hai lekin main replacement par mana lena chahta hoon — kaise baat karoon?”")), chat.map((m, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
-      ...S.bubble,
-      ...(m.role === "user" ? S.bubbleUser : S.bubbleAI)
+      ...St.bubble,
+      ...(m.role === "user" ? St.bubbleU : St.bubbleA)
     }
   }, m.content)), chatLoading && /*#__PURE__*/React.createElement("div", {
     style: {
-      ...S.bubble,
-      ...S.bubbleAI
+      ...St.bubble,
+      ...St.bubbleA,
+      color: C.mute
     }
-  }, "…")), /*#__PURE__*/React.createElement("div", {
-    style: S.chatInputRow
+  }, "thinking…"), /*#__PURE__*/React.createElement("div", {
+    ref: chatEndRef
+  })), /*#__PURE__*/React.createElement("div", {
+    style: St.chatRow
   }, /*#__PURE__*/React.createElement("textarea", {
-    className: "ta",
+    className: "fld",
     style: {
-      ...S.textarea,
-      minHeight: 54,
+      ...St.fld,
+      minHeight: 52,
       flex: 1
     },
-    placeholder: "Situation ya sawaal likhein… (Enter = send, Shift+Enter = nayi line)",
     value: chatInput,
     onChange: e => setChatInput(e.target.value),
     onKeyDown: e => {
@@ -648,512 +604,733 @@ function SupportDesk() {
         e.preventDefault();
         sendChat();
       }
-    }
+    },
+    placeholder: "Situation ya sawaal likhein…  (Enter bhejne ke liye)"
   }), /*#__PURE__*/React.createElement("button", {
-    className: "gen",
+    className: "cta",
     style: {
-      ...S.generate,
+      ...St.cta,
       width: "auto",
       marginTop: 0,
-      padding: "12px 22px",
-      flexShrink: 0
+      padding: "0 26px",
+      ...(chatInput.trim() ? {} : St.ctaOff)
     },
     onClick: sendChat,
     disabled: chatLoading || !chatInput.trim()
-  }, "Send")))), /*#__PURE__*/React.createElement("footer", {
-    style: S.footer
-  }, /*#__PURE__*/React.createElement("span", null, "Acknowledge → own it → resolve fast."), /*#__PURE__*/React.createElement("span", {
-    style: S.footDot
-  }, "•"), /*#__PURE__*/React.createElement("span", null, "Crafted by ", /*#__PURE__*/React.createElement("strong", {
+  }, "Send")))), tab === "translate" && /*#__PURE__*/React.createElement("div", {
+    style: St.single,
+    className: "rise d2"
+  }, /*#__PURE__*/React.createElement("section", {
+    style: St.panel
+  }, /*#__PURE__*/React.createElement(SectionHead, {
+    k: "↔",
+    title: "Roman Urdu → English",
+    hint: "Normal chats ke liye"
+  }), /*#__PURE__*/React.createElement("textarea", {
+    className: "fld",
     style: {
-      color: T.emeraldDark
-    }
-  }, "Surti"))));
+      ...St.fld,
+      minHeight: 120
+    },
+    value: urduText,
+    onChange: e => setUrduText(e.target.value),
+    placeholder: "Misaal: 'Bhai order kal ship ho jayega, thora sa delay hua hai, sorry.'"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: St.micro
+  }, "Register"), /*#__PURE__*/React.createElement("div", {
+    style: St.chips
+  }, REGISTERS.map(r => /*#__PURE__*/React.createElement("button", {
+    key: r.id,
+    className: "chip",
+    style: {
+      ...St.chip,
+      ...(trReg === r.id ? St.chipOn : {})
+    },
+    onClick: () => setTrReg(r.id)
+  }, r.label))), /*#__PURE__*/React.createElement("button", {
+    className: "cta",
+    style: {
+      ...St.cta,
+      ...(urduText.trim() ? {} : St.ctaOff)
+    },
+    onClick: translate,
+    disabled: loading || !urduText.trim()
+  }, loading ? "Translating…" : "Translate to English"), error && /*#__PURE__*/React.createElement("div", {
+    style: St.err
+  }, error), trResult && /*#__PURE__*/React.createElement("div", {
+    style: {
+      ...St.letter,
+      marginTop: 22
+    },
+    className: "letter"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.letterHead
+  }, /*#__PURE__*/React.createElement("div", {
+    style: St.letterHeadRule
+  }), /*#__PURE__*/React.createElement("span", {
+    style: St.letterHeadTxt
+  }, "English")), /*#__PURE__*/React.createElement("div", {
+    style: St.letterBody
+  }, trResult), /*#__PURE__*/React.createElement("button", {
+    className: "copyBtn",
+    style: St.copyBtn,
+    onClick: () => copyText(trResult)
+  }, copied ? "Copied ✓" : "Copy English")))), /*#__PURE__*/React.createElement("footer", {
+    style: St.footer
+  }, /*#__PURE__*/React.createElement("span", {
+    style: St.footRule
+  }), /*#__PURE__*/React.createElement("span", null, "Acknowledge · own it · resolve fast"), /*#__PURE__*/React.createElement("span", {
+    style: St.footRule
+  })));
 }
-const S = {
-  page: {
-    fontFamily: "'Inter', system-ui, sans-serif",
-    background: T.bg,
-    color: T.ink,
+function SectionHead({
+  k,
+  title,
+  hint
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: St.secHead
+  }, /*#__PURE__*/React.createElement("span", {
+    style: St.secKey
+  }, k), /*#__PURE__*/React.createElement("span", {
+    style: St.secTitle
+  }, title), hint && /*#__PURE__*/React.createElement("span", {
+    style: St.secHint
+  }, hint));
+}
+const St = {
+  root: {
+    position: "relative",
     minHeight: "100vh",
-    padding: "0 0 44px",
-    boxSizing: "border-box"
+    background: C.void,
+    color: C.light,
+    fontFamily: "'Inter', system-ui, sans-serif",
+    padding: "0 0 60px",
+    overflowX: "hidden"
+  },
+  grain: {
+    position: "fixed",
+    inset: 0,
+    pointerEvents: "none",
+    opacity: 0.5,
+    zIndex: 0,
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E\")"
+  },
+  glowA: {
+    position: "fixed",
+    top: -260,
+    left: "8%",
+    width: 640,
+    height: 640,
+    borderRadius: "50%",
+    background: "radial-gradient(circle, rgba(47,158,126,0.20), transparent 65%)",
+    pointerEvents: "none",
+    zIndex: 0,
+    filter: "blur(20px)"
+  },
+  glowB: {
+    position: "fixed",
+    top: 120,
+    right: "-6%",
+    width: 520,
+    height: 520,
+    borderRadius: "50%",
+    background: "radial-gradient(circle, rgba(212,182,117,0.10), transparent 65%)",
+    pointerEvents: "none",
+    zIndex: 0,
+    filter: "blur(20px)"
   },
   header: {
     position: "relative",
-    overflow: "hidden",
-    background: `linear-gradient(120deg, ${T.headerA}, ${T.headerB})`,
-    padding: "26px 30px",
+    zIndex: 1,
+    maxWidth: 1140,
+    margin: "0 auto",
+    padding: "40px 32px 26px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 20,
-    borderBottom: `1px solid ${T.goldSoft}`,
+    gap: 24,
     flexWrap: "wrap"
   },
-  headerGlow: {
-    position: "absolute",
-    top: -120,
-    left: "18%",
-    width: 420,
-    height: 420,
-    background: "radial-gradient(circle, rgba(15,122,102,0.45), transparent 62%)",
-    pointerEvents: "none"
-  },
-  brandWrap: {
+  lockup: {
     display: "flex",
     alignItems: "center",
-    gap: 16,
-    position: "relative",
-    zIndex: 1
+    gap: 20
   },
-  medallion: {
+  seal: {
     position: "relative",
-    width: 56,
-    height: 56,
+    width: 74,
+    height: 74,
     borderRadius: "50%",
-    background: "radial-gradient(circle at 35% 30%, #16342A, #0B1D17)",
+    flexShrink: 0,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    flexShrink: 0,
-    boxShadow: "0 6px 20px rgba(0,0,0,0.4)"
+    background: "radial-gradient(circle at 34% 28%, #1B3A2E, #0A1712 72%)",
+    boxShadow: "0 10px 34px rgba(0,0,0,.55), inset 0 1px 0 rgba(212,182,117,.22)"
   },
-  medRing: {
+  sealRing: {
     position: "absolute",
     inset: 0,
     borderRadius: "50%",
-    border: `1px solid ${T.gold}`,
-    opacity: 0.55
+    border: `1px solid ${C.brassMid}`
   },
-  logoImg: {
-    width: 32,
-    height: 32,
+  sealRing2: {
+    position: "absolute",
+    inset: 7,
+    borderRadius: "50%",
+    border: `1px solid ${C.brassLo}`
+  },
+  sealMark: {
+    width: 38,
+    height: 38,
     objectFit: "contain",
-    opacity: 0.95
+    opacity: 0.96,
+    position: "relative"
   },
-  brandTitle: {
-    fontFamily: "'Fraunces', serif",
-    fontWeight: 500,
-    fontSize: 26,
-    color: "#F6F4EE",
-    letterSpacing: "0.01em",
-    lineHeight: 1
+  eyebrow: {
+    fontSize: 10,
+    letterSpacing: "0.32em",
+    textTransform: "uppercase",
+    color: C.brass,
+    marginBottom: 9
   },
-  brandSub: {
-    color: "rgba(233,238,234,0.66)",
-    fontSize: 12.5,
-    marginTop: 6,
-    maxWidth: 430
+  wordmark: {
+    fontFamily: "'Marcellus', serif",
+    fontSize: 40,
+    lineHeight: 1,
+    margin: 0,
+    color: C.ivory,
+    letterSpacing: "0.005em",
+    fontWeight: 400
   },
-  credit: {
-    position: "relative",
-    zIndex: 1,
+  plaque: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
-    padding: "9px 16px",
-    border: `1px solid ${T.goldSoft}`,
-    borderRadius: 12,
-    background: "rgba(255,255,255,0.03)"
+    padding: "11px 20px",
+    border: `1px solid ${C.brassMid}`,
+    borderRadius: 3,
+    background: "linear-gradient(180deg, rgba(212,182,117,.07), rgba(212,182,117,.02))"
   },
-  creditLabel: {
-    fontSize: 9.5,
-    letterSpacing: "0.22em",
+  plaqueTop: {
+    fontSize: 9,
+    letterSpacing: "0.3em",
     textTransform: "uppercase",
-    color: T.gold
+    color: C.brass
   },
-  creditName: {
-    fontFamily: "'Fraunces', serif",
-    fontSize: 20,
-    color: "#F6F4EE",
-    lineHeight: 1.1,
-    marginTop: 2
+  plaqueName: {
+    fontFamily: "'Marcellus', serif",
+    fontSize: 24,
+    color: C.ivory,
+    marginTop: 4,
+    lineHeight: 1
   },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: 20,
-    maxWidth: 1080,
-    margin: "22px auto 0",
-    padding: "0 24px",
-    alignItems: "start"
+  rule: {
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 1140,
+    margin: "0 auto",
+    height: 1,
+    background: `linear-gradient(90deg, transparent, ${C.brassMid} 18%, ${C.brassMid} 82%, transparent)`
   },
   tabs: {
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 1140,
+    margin: "0 auto",
+    padding: "22px 32px 0",
     display: "flex",
-    gap: 6,
-    justifyContent: "center",
-    margin: "24px auto 0",
-    background: "#fff",
-    border: `1px solid ${T.line}`,
-    borderRadius: 999,
-    padding: 5,
-    width: "fit-content",
-    boxShadow: "0 1px 2px rgba(23,36,32,0.05)"
+    gap: 34,
+    flexWrap: "wrap"
   },
   tab: {
+    position: "relative",
+    background: "none",
     border: "none",
-    background: "transparent",
-    color: T.muted,
-    fontSize: 13.5,
-    fontWeight: 600,
-    padding: "9px 22px",
-    borderRadius: 999,
+    padding: "6px 0 14px",
+    color: C.mute,
+    fontSize: 14,
+    fontFamily: "inherit",
     cursor: "pointer",
-    fontFamily: "inherit"
+    letterSpacing: "0.02em"
   },
   tabOn: {
-    background: `linear-gradient(180deg, ${T.emerald}, ${T.emeraldDark})`,
-    color: "#fff",
-    boxShadow: "0 6px 16px -8px rgba(15,122,102,0.6)"
+    color: C.ivory
   },
-  translateWrap: {
-    maxWidth: 640,
-    margin: "22px auto 0",
-    padding: "0 24px"
+  tabUnder: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 6,
+    height: 1.5,
+    background: C.brass
+  },
+  grid: {
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 1140,
+    margin: "26px auto 0",
+    padding: "0 32px",
+    display: "grid",
+    gridTemplateColumns: "minmax(0,1fr) minmax(0,1.02fr)",
+    gap: 26,
+    alignItems: "start"
   },
   accessRow: {
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 1140,
+    margin: "10px auto 0",
+    padding: "0 32px",
     display: "flex",
-    justifyContent: "center",
-    margin: "12px auto 0",
-    padding: "0 24px"
+    justifyContent: "flex-end"
   },
   accessInput: {
-    width: 300,
-    maxWidth: "100%",
-    textAlign: "center",
+    width: 190,
     minHeight: 0,
-    padding: "9px 12px",
-    fontSize: 13
-  },
-  chatBox: {
-    border: `1px solid ${T.line}`,
-    borderRadius: 14,
-    padding: 14,
-    background: "#FBFCFB",
-    minHeight: 240,
-    maxHeight: 440,
-    overflowY: "auto",
-    display: "flex",
-    flexDirection: "column",
-    gap: 10
-  },
-  chatHint: {
-    color: T.muted,
-    fontSize: 13,
-    lineHeight: 1.6,
-    fontStyle: "italic"
-  },
-  bubble: {
-    padding: "10px 13px",
-    borderRadius: 13,
-    fontSize: 14,
-    lineHeight: 1.55,
-    whiteSpace: "pre-wrap",
-    maxWidth: "88%"
-  },
-  bubbleUser: {
-    alignSelf: "flex-end",
-    background: T.emerald,
-    color: "#fff",
-    borderBottomRightRadius: 4
-  },
-  bubbleAI: {
-    alignSelf: "flex-start",
-    background: "#fff",
-    color: T.ink,
-    border: `1px solid ${T.line}`,
-    borderBottomLeftRadius: 4
-  },
-  chatInputRow: {
-    display: "flex",
-    gap: 10,
-    marginTop: 12,
-    alignItems: "flex-end"
-  },
-  card: {
-    background: T.surface,
-    border: `1px solid ${T.line}`,
-    borderRadius: 20,
-    padding: 24,
-    boxShadow: "0 1px 2px rgba(23,36,32,0.04), 0 18px 40px -28px rgba(23,36,32,0.22)"
-  },
-  stepHead: {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    marginBottom: 12
-  },
-  stepNo: {
-    fontFamily: "'Fraunces', serif",
-    fontSize: 15,
-    color: T.gold,
-    fontWeight: 600
-  },
-  stepLabel: {
-    fontSize: 12.5,
-    fontWeight: 600,
-    color: T.ink,
-    textTransform: "uppercase",
-    letterSpacing: "0.05em"
-  },
-  subLabel: {
+    padding: "8px 12px",
     fontSize: 12,
-    fontWeight: 600,
-    color: T.muted,
-    margin: "18px 0 7px",
-    textTransform: "uppercase",
-    letterSpacing: "0.05em"
+    textAlign: "center"
   },
-  opt: {
-    textTransform: "none",
-    fontWeight: 400,
-    color: T.faint
+  single: {
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 780,
+    margin: "26px auto 0",
+    padding: "0 32px"
+  },
+  panel: {
+    background: `linear-gradient(180deg, ${C.panel}, ${C.desk})`,
+    border: `1px solid ${C.brassLo}`,
+    borderRadius: 6,
+    padding: "26px 26px 28px",
+    boxShadow: "0 26px 60px -34px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.035)"
+  },
+  secHead: {
+    display: "flex",
+    alignItems: "baseline",
+    gap: 11,
+    margin: "24px 0 12px"
+  },
+  secKey: {
+    fontFamily: "'Marcellus', serif",
+    fontSize: 13,
+    color: C.brass,
+    border: `1px solid ${C.brassLo}`,
+    borderRadius: "50%",
+    width: 25,
+    height: 25,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0
+  },
+  secTitle: {
+    fontFamily: "'Marcellus', serif",
+    fontSize: 17.5,
+    color: C.ivory
+  },
+  secHint: {
+    fontSize: 11.5,
+    color: C.mute,
+    marginLeft: "auto"
   },
   drop: {
-    border: `1.5px dashed ${T.line}`,
-    borderRadius: 15,
-    padding: "22px 16px",
+    border: `1px dashed ${C.brassMid}`,
+    borderRadius: 5,
+    padding: "26px 18px",
     textAlign: "center",
     cursor: "pointer",
-    background: "#FBFCFB"
-  },
-  dropIcon: {
-    fontSize: 26,
-    color: T.emerald
+    background: "rgba(212,182,117,.025)",
+    transition: "all .22s ease"
   },
   dropText: {
-    fontSize: 14,
-    fontWeight: 600,
-    color: T.ink,
-    marginTop: 4
+    fontFamily: "'Marcellus', serif",
+    fontSize: 16,
+    color: C.ivory,
+    marginTop: 10
   },
   dropSub: {
-    fontSize: 12.5,
-    color: T.muted,
-    marginTop: 3
+    fontSize: 12,
+    color: C.mute,
+    marginTop: 5
   },
-  thumbRow: {
+  thumbs: {
     display: "flex",
     flexWrap: "wrap",
     gap: 10,
-    marginTop: 12
+    marginTop: 14
   },
   thumbWrap: {
     position: "relative",
-    width: 76,
-    height: 76
+    width: 72,
+    height: 72
   },
   thumb: {
-    width: 76,
-    height: 76,
+    width: 72,
+    height: 72,
     objectFit: "cover",
-    borderRadius: 11,
-    border: `1px solid ${T.line}`
+    borderRadius: 3,
+    border: `1px solid ${C.brassLo}`
   },
   thumbX: {
     position: "absolute",
-    top: -8,
-    right: -8,
-    width: 22,
-    height: 22,
+    top: -7,
+    right: -7,
+    width: 21,
+    height: 21,
     borderRadius: "50%",
-    border: "none",
-    background: T.ink,
-    color: "#fff",
+    border: `1px solid ${C.brassMid}`,
+    background: C.desk,
+    color: C.brass,
     cursor: "pointer",
-    fontSize: 15,
-    lineHeight: "22px",
+    fontSize: 13,
+    lineHeight: "19px",
     padding: 0
   },
-  textarea: {
+  micro: {
+    fontSize: 10.5,
+    letterSpacing: "0.19em",
+    textTransform: "uppercase",
+    color: C.mute,
+    margin: "20px 0 9px"
+  },
+  opt: {
+    letterSpacing: "0.02em",
+    textTransform: "none",
+    color: "#6E7E76"
+  },
+  fld: {
     width: "100%",
-    minHeight: 92,
-    resize: "vertical",
-    border: `1px solid ${T.line}`,
-    borderRadius: 13,
-    padding: "12px 14px",
+    boxSizing: "border-box",
+    background: "rgba(0,0,0,.26)",
+    border: `1px solid ${C.brassLo}`,
+    borderRadius: 4,
+    padding: "13px 15px",
+    color: C.light,
     fontSize: 14.5,
     fontFamily: "inherit",
-    color: T.ink,
-    boxSizing: "border-box",
-    background: "#FBFCFB",
-    lineHeight: 1.55
+    lineHeight: 1.6,
+    resize: "vertical",
+    transition: "border-color .2s, box-shadow .2s"
   },
-  toneRow: {
+  chips: {
     display: "flex",
-    gap: 8,
+    gap: 9,
     flexWrap: "wrap"
   },
-  tone: {
-    flex: "1 1 auto",
-    border: `1px solid ${T.line}`,
-    background: "#FBFCFB",
-    color: T.muted,
-    fontSize: 13,
-    padding: "9px 10px",
-    borderRadius: 11,
+  chip: {
+    border: `1px solid ${C.brassLo}`,
+    background: "rgba(255,255,255,.02)",
+    color: C.mute,
+    fontSize: 12.5,
+    padding: "9px 15px",
+    borderRadius: 3,
     cursor: "pointer",
     fontFamily: "inherit",
-    fontWeight: 500
+    transition: "all .2s ease"
   },
-  toneActive: {
-    borderColor: T.emerald,
-    background: T.emeraldSoft,
-    color: T.emeraldDark,
-    fontWeight: 600
+  chipOn: {
+    borderColor: C.brass,
+    color: C.ivory,
+    background: "rgba(212,182,117,.1)"
   },
-  generate: {
+  nameGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(118px, 1fr))",
+    gap: 9
+  },
+  nameChip: {
+    textAlign: "center",
+    padding: "9px 6px"
+  },
+  cta: {
     width: "100%",
-    marginTop: 22,
-    background: `linear-gradient(180deg, ${T.emerald}, ${T.emeraldDark})`,
-    color: "#fff",
+    height: 50,
+    marginTop: 26,
+    background: `linear-gradient(180deg, ${C.emerald}, ${C.emeraldDeep})`,
+    color: "#04120D",
     border: "none",
-    borderRadius: 13,
-    padding: "14px",
-    fontSize: 15,
+    borderRadius: 4,
+    fontSize: 14.5,
     fontWeight: 600,
-    cursor: "pointer",
     fontFamily: "inherit",
-    boxShadow: "0 8px 22px -8px rgba(15,122,102,0.6)",
-    letterSpacing: "0.01em"
+    cursor: "pointer",
+    letterSpacing: "0.04em",
+    boxShadow: "0 12px 30px -14px rgba(47,158,126,.9)",
+    transition: "transform .16s, filter .16s"
   },
-  holding: {
+  ctaOff: {
+    background: "rgba(255,255,255,.05)",
+    color: "#5E6D66",
+    boxShadow: "none",
+    cursor: "not-allowed"
+  },
+  ghost: {
     width: "100%",
     marginTop: 11,
-    background: "#fff",
-    color: T.emeraldDark,
-    border: `1px solid ${T.emerald}`,
-    borderRadius: 13,
+    background: "transparent",
+    color: C.brass,
+    border: `1px solid ${C.brassLo}`,
+    borderRadius: 4,
     padding: "12px",
-    fontSize: 13,
-    fontWeight: 600,
+    fontSize: 12.5,
+    fontFamily: "inherit",
     cursor: "pointer",
-    fontFamily: "inherit"
+    letterSpacing: "0.03em",
+    transition: "all .2s"
   },
-  error: {
-    marginTop: 12,
-    background: T.redSoft,
-    color: T.red,
-    padding: "10px 12px",
-    borderRadius: 11,
-    fontSize: 13.5
+  err: {
+    marginTop: 14,
+    border: `1px solid rgba(201,123,107,.4)`,
+    background: "rgba(201,123,107,.09)",
+    color: "#E0A99C",
+    padding: "11px 14px",
+    borderRadius: 4,
+    fontSize: 13
   },
-  empty: {
+  // ---- the letter (signature element) ----
+  letterCol: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 18
+  },
+  letter: {
+    background: `linear-gradient(175deg, ${C.paper}, ${C.ivory})`,
+    borderRadius: 3,
+    padding: "30px 32px 32px",
+    color: C.paperInk,
+    boxShadow: "0 30px 70px -30px rgba(0,0,0,.85), 0 2px 0 rgba(255,255,255,.5) inset",
+    position: "relative"
+  },
+  letterHead: {
+    display: "flex",
+    alignItems: "center",
+    gap: 13,
+    paddingBottom: 18,
+    marginBottom: 20,
+    borderBottom: `1px solid rgba(26,33,29,.12)`
+  },
+  letterMark: {
+    width: 24,
+    height: 24,
+    objectFit: "contain",
+    filter: "invert(1) opacity(.55)"
+  },
+  letterHeadRule: {
+    flex: 1,
+    height: 1,
+    background: "rgba(26,33,29,.14)"
+  },
+  letterHeadTxt: {
+    fontSize: 9.5,
+    letterSpacing: "0.28em",
+    textTransform: "uppercase",
+    color: C.amberInk
+  },
+  await: {
     textAlign: "center",
-    padding: "54px 22px",
-    color: T.muted
+    padding: "44px 12px 40px"
   },
-  emptyMark: {
-    fontFamily: "'Fraunces', serif",
-    fontSize: 46,
-    color: T.gold,
-    lineHeight: 0.5,
-    opacity: 0.8
+  awaitGlyph: {
+    fontSize: 30,
+    color: C.amberInk,
+    opacity: 0.5
   },
-  emptyTitle: {
-    fontFamily: "'Fraunces', serif",
-    fontWeight: 500,
+  awaitTitle: {
+    fontFamily: "'Marcellus', serif",
     fontSize: 21,
-    color: T.ink,
-    marginTop: 20
+    color: C.paperInk,
+    marginTop: 16
   },
-  emptyText: {
-    fontSize: 13.5,
-    marginTop: 10,
-    lineHeight: 1.6,
-    maxWidth: 330,
+  awaitText: {
+    fontFamily: "'Spectral', serif",
+    fontSize: 14.5,
+    color: C.paperMute,
+    marginTop: 11,
+    lineHeight: 1.7,
+    maxWidth: 320,
     marginLeft: "auto",
     marginRight: "auto"
   },
-  metaRow: {
+  skelWrap: {
+    marginTop: 24,
     display: "flex",
-    gap: 8,
-    marginBottom: 14
+    flexDirection: "column",
+    gap: 11,
+    alignItems: "center"
   },
-  tag: {
-    fontSize: 12,
-    fontWeight: 600,
-    padding: "5px 12px",
-    borderRadius: 999
+  skel: {
+    height: 9,
+    borderRadius: 2,
+    background: "rgba(26,33,29,.09)"
   },
-  replyLabel: {
-    fontSize: 12,
-    fontWeight: 600,
-    color: T.muted,
+  stamps: {
+    display: "flex",
+    gap: 9,
+    marginBottom: 18,
+    flexWrap: "wrap"
+  },
+  stamp: {
+    fontSize: 10,
+    letterSpacing: "0.16em",
     textTransform: "uppercase",
-    letterSpacing: "0.05em",
-    marginBottom: 8
+    padding: "5px 11px",
+    border: `1px solid ${C.amberInk}`,
+    color: C.amberInk,
+    borderRadius: 2
   },
-  replyBox: {
-    border: `1px solid ${T.line}`,
-    borderLeft: `3px solid ${T.emerald}`,
-    borderRadius: 13,
-    padding: "16px 18px",
-    fontSize: 14.5,
-    lineHeight: 1.68,
+  letterBody: {
+    fontFamily: "'Spectral', serif",
+    fontSize: 15.5,
+    lineHeight: 1.82,
     whiteSpace: "pre-wrap",
-    background: "#FBFCFB",
-    color: T.ink
+    color: C.paperInk
   },
   copyBtn: {
-    marginTop: 11,
-    background: T.ink,
-    color: "#fff",
+    marginTop: 24,
+    background: C.paperInk,
+    color: C.ivory,
     border: "none",
-    borderRadius: 11,
-    padding: "10px 18px",
-    fontSize: 13.5,
+    borderRadius: 3,
+    padding: "11px 22px",
+    fontSize: 12.5,
     fontWeight: 600,
+    letterSpacing: "0.05em",
     cursor: "pointer",
     fontFamily: "inherit"
   },
-  coachBlock: {
-    marginTop: 16,
-    background: T.amberSoft,
-    borderRadius: 13,
-    padding: "13px 15px",
-    borderLeft: `3px solid ${T.gold}`
+  notes: {
+    display: "grid",
+    gap: 12
   },
-  coachLabel: {
-    fontSize: 11,
-    fontWeight: 700,
-    color: T.amber,
+  note: {
+    border: `1px solid ${C.brassLo}`,
+    borderLeft: `2px solid ${C.brass}`,
+    background: "rgba(212,182,117,.045)",
+    borderRadius: 3,
+    padding: "14px 17px"
+  },
+  noteK: {
+    fontSize: 9.5,
+    letterSpacing: "0.26em",
     textTransform: "uppercase",
-    letterSpacing: "0.06em"
+    color: C.brass
   },
-  coachText: {
+  noteV: {
     fontSize: 14,
-    color: T.ink,
-    marginTop: 5,
-    lineHeight: 1.55
+    color: C.light,
+    marginTop: 7,
+    lineHeight: 1.6
+  },
+  chatBox: {
+    border: `1px solid ${C.brassLo}`,
+    borderRadius: 5,
+    background: "rgba(0,0,0,.24)",
+    padding: 18,
+    minHeight: 300,
+    maxHeight: 460,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: 12
+  },
+  chatHint: {
+    color: C.mute,
+    fontSize: 13.5,
+    lineHeight: 1.7
+  },
+  chatEg: {
+    fontFamily: "'Spectral', serif",
+    fontStyle: "italic",
+    color: "#B9C6BF",
+    marginTop: 12,
+    paddingLeft: 15,
+    borderLeft: `2px solid ${C.brassLo}`,
+    fontSize: 14.5,
+    lineHeight: 1.7
+  },
+  bubble: {
+    padding: "12px 15px",
+    borderRadius: 4,
+    fontSize: 14,
+    lineHeight: 1.65,
+    whiteSpace: "pre-wrap",
+    maxWidth: "86%"
+  },
+  bubbleU: {
+    alignSelf: "flex-end",
+    background: "rgba(47,158,126,.16)",
+    border: `1px solid rgba(47,158,126,.34)`,
+    color: C.light
+  },
+  bubbleA: {
+    alignSelf: "flex-start",
+    background: "rgba(255,255,255,.035)",
+    border: `1px solid ${C.brassLo}`,
+    color: C.light
+  },
+  chatRow: {
+    display: "flex",
+    gap: 11,
+    marginTop: 14,
+    alignItems: "stretch"
   },
   footer: {
-    maxWidth: 1080,
-    margin: "26px auto 0",
-    padding: "0 24px",
-    color: T.muted,
-    fontSize: 12.5,
-    textAlign: "center",
+    position: "relative",
+    zIndex: 1,
+    maxWidth: 1140,
+    margin: "46px auto 0",
+    padding: "0 32px",
     display: "flex",
-    gap: 10,
-    justifyContent: "center",
     alignItems: "center",
-    flexWrap: "wrap"
+    gap: 18,
+    color: "#61716A",
+    fontSize: 10.5,
+    letterSpacing: "0.26em",
+    textTransform: "uppercase",
+    justifyContent: "center"
   },
-  footDot: {
-    color: T.gold
+  footRule: {
+    height: 1,
+    width: 60,
+    background: C.brassLo
   }
 };
 const css = `
-  .ta:focus { outline: none; border-color: ${T.emerald}; box-shadow: 0 0 0 3px ${T.emeraldSoft}; }
-  .drop:hover { border-color: ${T.emerald}; background: ${T.emeraldSoft}; }
-  .tone:hover { border-color: ${T.emerald}; }
-  .gen:hover:not(:disabled) { filter: brightness(1.06); }
-  .hold:hover:not(:disabled) { background: ${T.emeraldSoft}; }
-  .copy:hover { opacity: 0.9; }
-  @media (max-width: 720px) {
-    .support-grid { grid-template-columns: 1fr !important; }
+  * { -webkit-font-smoothing: antialiased; }
+  .fld:focus { outline: none; border-color: ${C.brass}; box-shadow: 0 0 0 3px rgba(212,182,117,.10); }
+  .fld::placeholder { color: #5F6E67; }
+  .drop:hover { border-color: ${C.brass}; background: rgba(212,182,117,.06); }
+  .chip:hover { border-color: ${C.brassMid}; color: ${C.ivory}; }
+  .tabBtn:hover { color: ${C.ivory}; }
+  .cta:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.07); }
+  .ghost:hover:not(:disabled) { border-color: ${C.brass}; background: rgba(212,182,117,.06); }
+  .copyBtn:hover { opacity: .88; }
+  .thumb:hover img { border-color: ${C.brassMid}; }
+  ::-webkit-scrollbar { width: 9px; height: 9px; }
+  ::-webkit-scrollbar-thumb { background: rgba(212,182,117,.22); border-radius: 9px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .rise { animation: rise .62s cubic-bezier(.2,.7,.3,1) both; }
+  .d1 { animation-delay: .07s; }
+  .d2 { animation-delay: .14s; }
+  @keyframes letterIn { from { opacity: 0; transform: translateY(18px) rotate(-.35deg); } to { opacity: 1; transform: none; } }
+  .letter { animation: letterIn .6s cubic-bezier(.2,.7,.3,1) both; }
+  @keyframes pulse { 0%,100% { opacity: .5; } 50% { opacity: .95; } }
+  .skel { animation: pulse 1.5s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise, .letter, .skel { animation: none !important; }
+    .cta:hover:not(:disabled) { transform: none; }
+  }
+  @media (max-width: 860px) {
+    .grid2 { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 560px) {
+    .grid2 { padding: 0 18px !important; }
   }
 `;
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(SupportDesk));
