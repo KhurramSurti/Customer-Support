@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Resolution Desk — by Surti</title>
+<style>html,body,#root{margin:0;padding:0;min-height:100%;} body{background:#F2F3F0;}</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef } = React;
+
+// ---- Brand logo (embedded, white monogram for dark surfaces) -----------
+const LOGO =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG8AAABuCAYAAAApmU3FAAAGMUlEQVR4nO2d0XHjNhCGl5m8hx0cOziVwFQQdRB1EKUC8So4d2BfBU4HylUgXQVUKqA6+PMAeMyjsQAWgExT3G9G4xkLuwT3J5bggqSIFEVRFEVRFEVRFEVRFEVRFEVxA6ABMKAcA4Cvc+9XKr/O3QEhVyL6RkSfiajN9HMhojMR/cjrkpIEgE44yjoA7dz9ViwRovUAdnP3U5kAcw708QCgnrufigMAjx7hurn7pzAAOKhwCwTARoVbIPY81zPCPc/dP8UDgBMjXA+gmbt/CoPnPDeocB8YAH95znO7ufunMMBf0+zm7t9cfPjapk2HRyKqHV9/qaqqE/h5+dDobzSx21IsAI4pIw5ADWBv7blRK6F/p12+D8BPUDqPTesRXMV7D8BPUI5M+xrAV4kYKt4NAD9B6eEoNNv2J0/gjzApdDO1hxG9xWuKVfFSAV9B6eG4lvO0fxHtjU1g+1vGn3PEKyMAPDNCtEz7E9O+y+iD64BQ8XxAOEGRthf2ZZq6VTwOADuhcNxCbLHiNEwKVfF8OI7yYMDAn+eawn073qV4MFPzT5k+fBOUmrFpGeEec/oS2NbdidcD2Gf6eGaEazw2j4x4bU5fmG3VMFnh7sQDgIcM+4NUOGs3OOyG1H5E9PN4i1GdS4nC9G8pRgC2RNRN/n0lot+rqrp47FpyF6nPKf2I5NsNfc+DPeJPCXbceW4TYbtnUuaHGxm35pcCPhpJY5hJyNFh93dVVecIF7Vke/dMCfFqyGacB3or3Jeqqh4i7ae2SgqjlLWPbO+aoIjSLoAnJm2K0/eqGQUuOI2G+17LHvLCMSfegJXd2l4ibRIRtT4R7HeuslVDRBvhtq7M/2si2gl9rZfJkd952j0yo+VlxGwE2+RqoJo6JcSkLfxc3M0WEP5b3QHgUHo/7xJH4DpHmxr+Ve4UAYeAr7bwrt4fjACNo51vtXtM77J3+As9EevshzKCCZyz0lFSQLwWi7MPhNXiCVzLtC8pYMzz6CogRyBoNWNTRECY0ZftZ7UEgsbejgAzYxwKCOh7hkEF9BERNHbaLhSw9vjxXfepgByRQfMJGBv4U0DAmPPfi4Csn1URGbBSAnrvChMIeFIBSSReSMDYwHsXXAV+7ut+lBSE4gHAnx5fsYH3lr8Efla38v4TCeIB7yMgt2w0ZbFv/MsmTTsAH0vAdRay03QDEChCCwK/D/RPBeRIUW3EgDICsqPY+jlF+lmXgAmCTRngF/AY6ceXhmOXpIA1CTjZ8SPMff01TPVEcuHcMP6LrAUK/ABrEXC0ww/M9y0ya48FBYwtiAOZz18sgtHONp422UVoQeBZH0I/QOBcungQ+fTMQgUcILgxanHYIDxEts2u/hcWcIgUkPWzaGAmKVtB++xVBKGATh/WT5E1xcWChLQC/ikfiYCxgWd9jPzE0Pv8rArEX0aUWI0PCRibDdZdyB4jEJANGuJu6A0GXiDgtngglgrM7x7EwFb/BYEPCRiTzgdo+nwFBYrHkYH3+rB+YrLBepeRXCC+hlliNb6EgE3xICwVyGqPe4+fUgI+B+y70jFYNIi/iRYos5gbWokYPLb6+sYpkNUeW4+f2POoz0doIlTfIATLRiDggPy1wAH+MtrgsWW3vWpQoPaI+PNo7/Hhu5TZ3TAEywZlViKyBAT/gjpgDWt+Ocwg4MZhq+KlgjIrEZLV+O3Etmfabl3bUiaUEND6EVdzIHznteIA8SWwUA0ztp56sO0buEdt/S47fi9ghgdSYM+lExt9UCUFxI+cEqsIwGgiAzMKn6DXeOmgQCHb+tkgvqKzjvs5bw1kdVDvEg5kJbkeuqKQjzDop1DQEZ+OAfNWe68/JYBQQMC8wK6d+KhhKikHyH5nr4eWyPJIEPCFQSiWV0ToSEwjQ8DSPEIv3uXApL/YCoqEDvJfwuxhhNzihhfz1a0czwXMecj1EnIp/9LojfMwI2pHRH+Q/A3zZyK6ENEP+/dqP+eqqq553bwzYNJoh7RUekQg9dkR9ZTof0zWm3nvbuRNgan+t0T0mcz7rGv71dV+LvbznYj+kY4EmGpLY7fxyfpv6O3Iv9jtnYnoPzIjW0eeoiiKoiiKoiiKoiiKoiir43/lEaiT9/lGPwAAAABJRU5ErkJggg==";
+
+const MODEL = "claude-sonnet-5";
+
+// ---- Palette -----------------------------------------------------------
+const T = {
+  bg: "#F2F3F0",
+  surface: "#FFFFFF",
+  ink: "#172420",
+  muted: "#64726B",
+  faint: "#96A29B",
+  line: "#E4E8E4",
+  emerald: "#0F7A66",
+  emeraldDark: "#0A5A4A",
+  emeraldSoft: "#E8F3EF",
+  headerA: "#0C2019",
+  headerB: "#0A1712",
+  gold: "#C6A455",
+  goldSoft: "rgba(198,164,85,0.30)",
+  amber: "#A6641C",
+  amberSoft: "#F7EEE1",
+  red: "#A83A31",
+  redSoft: "#F7E7E4",
+};
+
+// ---- System prompt -----------------------------------------------------
+const SYSTEM_PROMPT = `You are a senior customer support specialist for an online store (the store resells/dropships physical products). You are warm, calm, genuinely empathetic, and very good at RESOLVING issues — not deflecting them.
+
+The customer's message will usually be given to you as one or more SCREENSHOT IMAGES (chat/email/marketplace messages). Read the images carefully and understand the full complaint, including any order details visible in them.
+
+The store owner will also give you an INSTRUCTION, usually written in Urdu or Roman Urdu, describing how they want to respond. Faithfully carry out the owner's intent, but express it as a polished, warm, professional reply in clear, natural, POLITE ENGLISH ready to send to the customer. If the owner's note is empty, use your own best judgement.
+
+CORE PRINCIPLES
+- Lead with empathy and acknowledgment. Make the customer feel heard.
+- Speak and act as the store that took the order. Never send the customer to an "overseas supplier" or blame the courier/supplier to their face. Never speculate about a cause you have not confirmed.
+- Never sound defensive and never make hollow excuses — customers detect deflection instantly and it causes chargebacks and bad reviews. Solve instead.
+- Move to ONE concrete resolution: replacement, refund, or partial refund/discount. Offer a clear choice where sensible.
+- When you need evidence (a photo/short video), ask kindly, framed as "so we can sort this out for you faster."
+- Give a clear next step and a DATED timeframe, not vague promises. Keep it concise and human.
+- Do NOT add any signature, sign-off line, or agent name — write only the message body; a name is added separately.
+
+SITUATION NOTES
+- Damaged/defective: apologize, ask for a quick photo, offer replacement or refund; low-value items can be a returnless refund.
+- Missing/short quantity: apologize, confirm the order, offer to ship the missing item or refund that portion.
+- Wrong item: full replacement or refund; customer should not pay return shipping for the store's error.
+- "Why did it arrive in Amazon/Walmart/another retailer's packaging?": stay calm and non-defensive. Explain honestly that orders are fulfilled through third-party fulfillment and distribution partners that sometimes reuse major carriers'/marketplaces' boxes — it does not affect the product, warranty, or their order. Do NOT invent elaborate false stories. Then pivot: is anything actually wrong we can make right?
+- Angry customer: validate the feeling first, get on their side, then solve. Don't match their tone.
+
+OUTPUT
+Return ONLY a raw JSON object (no markdown, no backticks, no commentary) with EXACTLY these keys:
+{
+  "category": "<short label, e.g. Damaged item / Missing item / Wrong item / Packaging question / Shipping delay / Refund request / Other>",
+  "sentiment": "<Calm | Frustrated | Angry>",
+  "reply": "<the full, ready-to-send reply in polished polite English>",
+  "recommended_action": "<one or two lines telling the owner what to actually DO operationally>",
+  "follow_up": "<one short follow-up message to send once the issue is resolved>"
+}`;
+
+const TONES = [
+  { id: "warm", label: "Warm & apologetic" },
+  { id: "neutral", label: "Professional" },
+  { id: "firm", label: "Firm but polite" },
+];
+
+const REGISTERS = [
+  { id: "casual", label: "Casual (WhatsApp)" },
+  { id: "neutral", label: "Neutral" },
+  { id: "formal", label: "Formal" },
+];
+
+const TRANSLATE_PROMPT = (register) =>
+  `You are an expert translator from Urdu / Roman Urdu (Urdu written in Latin script) into English. The user is chatting with people on WhatsApp and similar apps and types their reply in Roman Urdu. Translate it into natural, fluent, everyday English exactly as a real person would write it in a normal chat — not literal, not stiff, not corporate. Preserve the meaning, tone, warmth and intent. Match this register: ${register}. Keep it roughly the same length. Do not add greetings or content that isn't there. Output ONLY the English translation — no quotes, no notes, no explanation.`;
+
+const NAMES = ["Jane Smith", "Emily Carter", "Sarah Wilson", "Olivia Bennett", "Sophia Turner"];
+
+const STRATEGIST_PROMPT = `You are an elite customer-support STRATEGIST advising a store owner (dropshipping). The owner will describe — often in Roman Urdu — what a customer is saying and what the real situation is. Give sharp, practical, street-smart ideas to calm, satisfy and retain the customer and resolve the dispute in the store's favour where possible.
+
+Reply in the SAME language the owner uses (Roman Urdu or English). Be concrete: give the exact wording to send, what to offer (replacement, partial refund, small discount, expedited reship, goodwill coupon), how to frame it, how to de-escalate, and how to set polite boundaries with unreasonable customers.
+
+HARD RULE: never fabricate lies or false claims to deceive the customer (no fake tracking, no invented stories about where the product came from, no denying a real defect). Lies get exposed and trigger chargebacks, platform bans and bad reviews — they cost far more than they save. Whenever the owner wants to "make an excuse", give the strongest HONEST framing or a genuine goodwill gesture that reaches the same goal: a satisfied customer who does not dispute. You are cunning about persuasion and diplomacy, not about deception.
+
+Keep answers tight and usable — a couple of options with the actual wording, not essays.`;
+
+function extractJSON(text) {
+  const cleaned = text.replace(/```json/gi, "").replace(/```/g, "").trim();
+  const start = cleaned.indexOf("{");
+  const end = cleaned.lastIndexOf("}");
+  if (start === -1 || end === -1) throw new Error("No JSON found");
+  return JSON.parse(cleaned.slice(start, end + 1));
+}
+
+function fileToImage(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => {
+      const dataUrl = r.result;
+      resolve({ name: file.name, media_type: file.type || "image/png", base64: String(dataUrl).split(",")[1], preview: dataUrl });
+    };
+    r.onerror = () => reject(new Error("read failed"));
+    r.readAsDataURL(file);
+  });
+}
+
+function SupportDesk() {
+  const [images, setImages] = useState([]);
+  const [customerText, setCustomerText] = useState("");
+  const [idea, setIdea] = useState("");
+  const [tone, setTone] = useState("warm");
+  const [access, setAccess] = useState(() => { try { return localStorage.getItem("rd_access") || ""; } catch (e) { return ""; } });
+  const [selectedName, setSelectedName] = useState("");
+  const [tab, setTab] = useState("support");
+  const [urduText, setUrduText] = useState("");
+  const [trReg, setTrReg] = useState("casual");
+  const [trResult, setTrResult] = useState("");
+  const [chat, setChat] = useState([]);
+  const [chatInput, setChatInput] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [result, setResult] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const fileRef = useRef(null);
+
+  useEffect(() => {
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href =
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap";
+    document.head.appendChild(l);
+    return () => { try { document.head.removeChild(l); } catch (e) {} };
+  }, []);
+
+  async function onFiles(fileList) {
+    const files = Array.from(fileList).filter((f) => f.type.startsWith("image/"));
+    const loaded = await Promise.all(files.map(fileToImage));
+    setImages((prev) => [...prev, ...loaded]);
+  }
+  function removeImage(i) { setImages((prev) => prev.filter((_, idx) => idx !== i)); }
+
+  const canGenerate = images.length > 0 || customerText.trim().length > 0;
+
+  async function generate(mode = "full") {
+    if (mode === "full" && !canGenerate) return;
+    setLoading(true); setError(""); setResult(null); setCopied(false);
+
+    const toneLabel = TONES.find((t) => t.id === tone)?.label || "Warm";
+    const hasMsg = images.length > 0 || customerText.trim();
+    const msgRef = hasMsg
+      ? `The customer's message is in the attached screenshot(s)` +
+        (customerText.trim() ? ` and also typed here: """${customerText.trim()}"""` : ``) + `.`
+      : `No specific customer message was provided.`;
+
+    const instruction =
+      mode === "holding"
+        ? `${msgRef}\n\nHOLDING MODE: The owner does not have a specific answer ready yet. Write a short, warm ACKNOWLEDGEMENT reply in polite English (2–4 sentences): thank the customer for reaching out, show genuine empathy for their specific issue (reference it briefly if visible), and assure them that one of our representatives will personally look into it and get back to them very shortly (within 24 hours) to resolve it fully. Do NOT promise a specific resolution yet and do NOT invent excuses. Preferred tone: ${toneLabel}. Return the JSON object; make recommended_action a reminder for the owner to actually follow up in time.`
+        : `${msgRef}\n\nStore owner's instruction (may be in Roman Urdu) for how to reply:\n"""${idea.trim() || "(none — use your best judgement)"}"""\n\nPreferred tone: ${toneLabel}.\n\nWrite the ready-to-send reply in polished, polite English and return the JSON object.`;
+
+    const content = [];
+    images.forEach((img) => content.push({ type: "image", source: { type: "base64", media_type: img.media_type, data: img.base64 } }));
+    content.push({ type: "text", text: instruction });
+
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: MODEL, accessCode: access, max_tokens: 1000, system: SYSTEM_PROMPT, messages: [{ role: "user", content }] }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error((data && data.error) || "request failed");
+      const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
+      setResult(extractJSON(text));
+    } catch (e) {
+      setError("Couldn't generate a reply. If the owner set an access code, enter it above. Otherwise check billing/connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function copyText(txt) {
+    if (!txt) return;
+    navigator.clipboard.writeText(txt);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  }
+
+  async function sendChat() {
+    const q = chatInput.trim();
+    if (!q || chatLoading) return;
+    const next = [...chat, { role: "user", content: q }];
+    setChat(next); setChatInput(""); setChatLoading(true); setError("");
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: MODEL, accessCode: access, max_tokens: 1000, system: STRATEGIST_PROMPT, messages: next.map((m) => ({ role: m.role, content: m.content })) }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error((data && data.error) || "request failed");
+      const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
+      setChat([...next, { role: "assistant", content: text || "…" }]);
+    } catch (e) {
+      setChat([...next, { role: "assistant", content: "Connection issue — dobara try karein." }]);
+    } finally {
+      setChatLoading(false);
+    }
+  }
+
+  async function translate() {
+    if (!urduText.trim()) return;
+    setLoading(true); setError(""); setTrResult(""); setCopied(false);
+    const reg = REGISTERS.find((r) => r.id === trReg)?.label || "Casual";
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: MODEL, accessCode: access,
+          max_tokens: 1000,
+          system: TRANSLATE_PROMPT(reg),
+          messages: [{ role: "user", content: `Translate this Roman Urdu message to English:\n"""${urduText.trim()}"""` }],
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error((data && data.error) || "request failed");
+      let text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
+      text = text.replace(/^["'“”]+|["'“”]+$/g, "").trim();
+      setTrResult(text);
+    } catch (e) {
+      setError("Couldn't translate. If an access code is required, enter it above, then try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const sc =
+    result?.sentiment === "Angry" ? { bg: T.redSoft, fg: T.red }
+    : result?.sentiment === "Frustrated" ? { bg: T.amberSoft, fg: T.amber }
+    : { bg: T.emeraldSoft, fg: T.emeraldDark };
+
+  return (
+    <div style={S.page}>
+      <style>{css}</style>
+
+      {/* ---- Premium concierge header ---- */}
+      <header style={S.header}>
+        <div style={S.headerGlow} />
+        <div style={S.brandWrap}>
+          <div style={S.medallion}>
+            <span style={S.medRing} />
+            <img src={LOGO} alt="logo" style={S.logoImg} />
+          </div>
+          <div>
+            <div style={S.brandTitle}>Resolution&nbsp;Desk</div>
+            <div style={S.brandSub}>Concierge-grade replies for your store — screenshot in, polished English out</div>
+          </div>
+        </div>
+        <div style={S.credit}>
+          <span style={S.creditLabel}>Developed by</span>
+          <span style={S.creditName}>Surti</span>
+        </div>
+      </header>
+
+      {/* ---- Mode tabs ---- */}
+      <div style={S.tabs}>
+        <button style={{ ...S.tab, ...(tab === "support" ? S.tabOn : {}) }} onClick={() => { setTab("support"); setError(""); }}>Support reply</button>
+        <button style={{ ...S.tab, ...(tab === "strategy" ? S.tabOn : {}) }} onClick={() => { setTab("strategy"); setError(""); }}>Strategy chat</button>
+        <button style={{ ...S.tab, ...(tab === "translate" ? S.tabOn : {}) }} onClick={() => { setTab("translate"); setError(""); }}>Urdu → English</button>
+      </div>
+      <div style={S.accessRow}>
+        <input type="password" className="ta" style={S.accessInput} placeholder="Access code (only if the owner set one)" value={access}
+          onChange={(e) => { setAccess(e.target.value); try { localStorage.setItem("rd_access", e.target.value); } catch (x) {} }} />
+      </div>
+
+      {tab === "support" && (
+      <div className="support-grid" style={S.grid}>
+        {/* ---- Input ---- */}
+        <section style={S.card}>
+          <div style={S.stepHead}><span style={S.stepNo}>01</span><span style={S.stepLabel}>Customer's message — screenshot(s)</span></div>
+          <div className="drop" style={S.drop}
+            onClick={() => fileRef.current?.click()}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => { e.preventDefault(); onFiles(e.dataTransfer.files); }}>
+            <div style={S.dropIcon}>⇪</div>
+            <div style={S.dropText}>Click or drag screenshots here</div>
+            <div style={S.dropSub}>Add more than one image if needed</div>
+            <input ref={fileRef} type="file" accept="image/*" multiple style={{ display: "none" }} onChange={(e) => onFiles(e.target.files)} />
+          </div>
+
+          {images.length > 0 && (
+            <div style={S.thumbRow}>
+              {images.map((img, i) => (
+                <div key={i} style={S.thumbWrap}>
+                  <img src={img.preview} alt={img.name} style={S.thumb} />
+                  <button style={S.thumbX} onClick={() => removeImage(i)} title="Remove">×</button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={S.subLabel}>Or type the message instead <span style={S.opt}>(optional)</span></div>
+          <textarea className="ta" style={{ ...S.textarea, minHeight: 66 }}
+            placeholder="If you don't have a screenshot, paste the text here…"
+            value={customerText} onChange={(e) => setCustomerText(e.target.value)} />
+
+          <div style={{ ...S.stepHead, marginTop: 22 }}><span style={S.stepNo}>02</span><span style={S.stepLabel}>Aap ka idea — Urdu / Roman Urdu mein</span></div>
+          <textarea className="ta" style={S.textarea}
+            placeholder="Misaal: 'Isay bolo replacement bhej rahe hain, 3 din mein pohanch jayega, aur damage ki ek photo maang lo.'"
+            value={idea} onChange={(e) => setIdea(e.target.value)} />
+
+          <div style={S.subLabel}>Tone</div>
+          <div style={S.toneRow}>
+            {TONES.map((t) => (
+              <button key={t.id} className="tone" style={{ ...S.tone, ...(tone === t.id ? S.toneActive : {}) }} onClick={() => setTone(t.id)}>{t.label}</button>
+            ))}
+          </div>
+
+          <div style={S.subLabel}>Sign as <span style={S.opt}>(optional — click a name to add it at the end)</span></div>
+          <div style={S.toneRow}>
+            {NAMES.map((n) => (
+              <button key={n} className="tone" style={{ ...S.tone, ...(selectedName === n ? S.toneActive : {}) }} onClick={() => setSelectedName(selectedName === n ? "" : n)}>{n}</button>
+            ))}
+          </div>
+
+          <button className="gen" style={{ ...S.generate, opacity: canGenerate ? 1 : 0.5 }} onClick={() => generate("full")} disabled={loading || !canGenerate}>
+            {loading ? "Drafting reply…" : "Generate English reply"}
+          </button>
+          <button className="hold" style={S.holding} onClick={() => generate("holding")} disabled={loading}>
+            Quick holding reply — “a representative will contact you shortly”
+          </button>
+          {error && <div style={S.error}>{error}</div>}
+        </section>
+
+        {/* ---- Output ---- */}
+        <section style={{ ...S.card, background: result ? T.surface : "#FBFCFB" }}>
+          {!result && !loading && (
+            <div style={S.empty}>
+              <div style={S.emptyMark}>“ ”</div>
+              <div style={S.emptyTitle}>Your reply appears here</div>
+              <div style={S.emptyText}>Upload the customer's screenshot, tell me in Urdu what to say, and receive a ready-to-send, polished reply — with a read on the situation and the right next move.</div>
+            </div>
+          )}
+          {loading && <div style={S.empty}><div style={S.emptyText}>Reading the screenshots and drafting…</div></div>}
+
+          {result && (
+            <div>
+              <div style={S.metaRow}>
+                <span style={{ ...S.tag, background: T.emeraldSoft, color: T.emeraldDark }}>{result.category}</span>
+                <span style={{ ...S.tag, background: sc.bg, color: sc.fg }}>{result.sentiment}</span>
+              </div>
+              <div style={S.replyLabel}>Reply to customer</div>
+              <div style={S.replyBox}>{result.reply + (selectedName ? "\n\nWarm regards,\n" + selectedName : "")}</div>
+              <button className="copy" style={S.copyBtn} onClick={() => copyText(result.reply + (selectedName ? "\n\nWarm regards,\n" + selectedName : ""))}>{copied ? "Copied ✓" : "Copy reply"}</button>
+
+              <div style={S.coachBlock}>
+                <div style={S.coachLabel}>What to do · internal</div>
+                <div style={S.coachText}>{result.recommended_action}</div>
+              </div>
+              <div style={S.coachBlock}>
+                <div style={S.coachLabel}>Follow-up once resolved</div>
+                <div style={S.coachText}>{result.follow_up}</div>
+              </div>
+            </div>
+          )}
+        </section>
+      </div>
+      )}
+
+      {tab === "translate" && (
+        <div style={S.translateWrap}>
+          <section style={S.card}>
+            <div style={S.stepHead}><span style={S.stepNo}>UR</span><span style={S.stepLabel}>Aap ka jawab — Roman Urdu mein likhein</span></div>
+            <textarea className="ta" style={{ ...S.textarea, minHeight: 130 }}
+              placeholder="Misaal: 'Bhai order kal ship ho jayega, thora sa delay hua hai, sorry.'"
+              value={urduText} onChange={(e) => setUrduText(e.target.value)} />
+
+            <div style={S.subLabel}>Register</div>
+            <div style={S.toneRow}>
+              {REGISTERS.map((r) => (
+                <button key={r.id} className="tone" style={{ ...S.tone, ...(trReg === r.id ? S.toneActive : {}) }} onClick={() => setTrReg(r.id)}>{r.label}</button>
+              ))}
+            </div>
+
+            <button className="gen" style={{ ...S.generate, opacity: urduText.trim() ? 1 : 0.5 }} onClick={translate} disabled={loading || !urduText.trim()}>
+              {loading ? "Translating…" : "Translate to English"}
+            </button>
+            {error && <div style={S.error}>{error}</div>}
+
+            {trResult && (
+              <div style={{ marginTop: 22 }}>
+                <div style={S.replyLabel}>English</div>
+                <div style={S.replyBox}>{trResult}</div>
+                <button className="copy" style={S.copyBtn} onClick={() => copyText(trResult)}>{copied ? "Copied ✓" : "Copy English"}</button>
+              </div>
+            )}
+          </section>
+        </div>
+      )}
+
+      {tab === "strategy" && (
+        <div style={S.translateWrap}>
+          <section style={S.card}>
+            <div style={S.stepHead}><span style={S.stepNo}>AI</span><span style={S.stepLabel}>Strategy chat — situation batayein, smart ideas lein</span></div>
+            <div style={S.chatBox}>
+              {chat.length === 0 && (
+                <div style={S.chatHint}>Misaal: "Customer keh raha hai item damaged aaya. Woh full refund chahta hai lekin main replacement par mana lena chahta hoon — kaise baat karoon?" — poori situation batayein, main ready wording aur options doonga.</div>
+              )}
+              {chat.map((m, i) => (
+                <div key={i} style={{ ...S.bubble, ...(m.role === "user" ? S.bubbleUser : S.bubbleAI) }}>{m.content}</div>
+              ))}
+              {chatLoading && <div style={{ ...S.bubble, ...S.bubbleAI }}>…</div>}
+            </div>
+            <div style={S.chatInputRow}>
+              <textarea className="ta" style={{ ...S.textarea, minHeight: 54, flex: 1 }} placeholder="Situation ya sawaal likhein… (Enter = send, Shift+Enter = nayi line)"
+                value={chatInput} onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
+              <button className="gen" style={{ ...S.generate, width: "auto", marginTop: 0, padding: "12px 22px", flexShrink: 0 }} onClick={sendChat} disabled={chatLoading || !chatInput.trim()}>Send</button>
+            </div>
+          </section>
+        </div>
+      )}
+
+      <footer style={S.footer}>
+        <span>Acknowledge → own it → resolve fast.</span>
+        <span style={S.footDot}>•</span>
+        <span>Crafted by <strong style={{ color: T.emeraldDark }}>Surti</strong></span>
+      </footer>
+    </div>
+  );
+}
+
+const S = {
+  page: { fontFamily: "'Inter', system-ui, sans-serif", background: T.bg, color: T.ink, minHeight: "100vh", padding: "0 0 44px", boxSizing: "border-box" },
+
+  header: { position: "relative", overflow: "hidden", background: `linear-gradient(120deg, ${T.headerA}, ${T.headerB})`, padding: "26px 30px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, borderBottom: `1px solid ${T.goldSoft}`, flexWrap: "wrap" },
+  headerGlow: { position: "absolute", top: -120, left: "18%", width: 420, height: 420, background: "radial-gradient(circle, rgba(15,122,102,0.45), transparent 62%)", pointerEvents: "none" },
+  brandWrap: { display: "flex", alignItems: "center", gap: 16, position: "relative", zIndex: 1 },
+  medallion: { position: "relative", width: 56, height: 56, borderRadius: "50%", background: "radial-gradient(circle at 35% 30%, #16342A, #0B1D17)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 6px 20px rgba(0,0,0,0.4)" },
+  medRing: { position: "absolute", inset: 0, borderRadius: "50%", border: `1px solid ${T.gold}`, opacity: 0.55 },
+  logoImg: { width: 32, height: 32, objectFit: "contain", opacity: 0.95 },
+  brandTitle: { fontFamily: "'Fraunces', serif", fontWeight: 500, fontSize: 26, color: "#F6F4EE", letterSpacing: "0.01em", lineHeight: 1 },
+  brandSub: { color: "rgba(233,238,234,0.66)", fontSize: 12.5, marginTop: 6, maxWidth: 430 },
+  credit: { position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "flex-end", padding: "9px 16px", border: `1px solid ${T.goldSoft}`, borderRadius: 12, background: "rgba(255,255,255,0.03)" },
+  creditLabel: { fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: T.gold },
+  creditName: { fontFamily: "'Fraunces', serif", fontSize: 20, color: "#F6F4EE", lineHeight: 1.1, marginTop: 2 },
+
+  grid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, maxWidth: 1080, margin: "22px auto 0", padding: "0 24px", alignItems: "start" },
+  tabs: { display: "flex", gap: 6, justifyContent: "center", margin: "24px auto 0", background: "#fff", border: `1px solid ${T.line}`, borderRadius: 999, padding: 5, width: "fit-content", boxShadow: "0 1px 2px rgba(23,36,32,0.05)" },
+  tab: { border: "none", background: "transparent", color: T.muted, fontSize: 13.5, fontWeight: 600, padding: "9px 22px", borderRadius: 999, cursor: "pointer", fontFamily: "inherit" },
+  tabOn: { background: `linear-gradient(180deg, ${T.emerald}, ${T.emeraldDark})`, color: "#fff", boxShadow: "0 6px 16px -8px rgba(15,122,102,0.6)" },
+  translateWrap: { maxWidth: 640, margin: "22px auto 0", padding: "0 24px" },
+  accessRow: { display: "flex", justifyContent: "center", margin: "12px auto 0", padding: "0 24px" },
+  accessInput: { width: 300, maxWidth: "100%", textAlign: "center", minHeight: 0, padding: "9px 12px", fontSize: 13 },
+  chatBox: { border: `1px solid ${T.line}`, borderRadius: 14, padding: 14, background: "#FBFCFB", minHeight: 240, maxHeight: 440, overflowY: "auto", display: "flex", flexDirection: "column", gap: 10 },
+  chatHint: { color: T.muted, fontSize: 13, lineHeight: 1.6, fontStyle: "italic" },
+  bubble: { padding: "10px 13px", borderRadius: 13, fontSize: 14, lineHeight: 1.55, whiteSpace: "pre-wrap", maxWidth: "88%" },
+  bubbleUser: { alignSelf: "flex-end", background: T.emerald, color: "#fff", borderBottomRightRadius: 4 },
+  bubbleAI: { alignSelf: "flex-start", background: "#fff", color: T.ink, border: `1px solid ${T.line}`, borderBottomLeftRadius: 4 },
+  chatInputRow: { display: "flex", gap: 10, marginTop: 12, alignItems: "flex-end" },
+  card: { background: T.surface, border: `1px solid ${T.line}`, borderRadius: 20, padding: 24, boxShadow: "0 1px 2px rgba(23,36,32,0.04), 0 18px 40px -28px rgba(23,36,32,0.22)" },
+
+  stepHead: { display: "flex", alignItems: "center", gap: 10, marginBottom: 12 },
+  stepNo: { fontFamily: "'Fraunces', serif", fontSize: 15, color: T.gold, fontWeight: 600 },
+  stepLabel: { fontSize: 12.5, fontWeight: 600, color: T.ink, textTransform: "uppercase", letterSpacing: "0.05em" },
+  subLabel: { fontSize: 12, fontWeight: 600, color: T.muted, margin: "18px 0 7px", textTransform: "uppercase", letterSpacing: "0.05em" },
+  opt: { textTransform: "none", fontWeight: 400, color: T.faint },
+
+  drop: { border: `1.5px dashed ${T.line}`, borderRadius: 15, padding: "22px 16px", textAlign: "center", cursor: "pointer", background: "#FBFCFB" },
+  dropIcon: { fontSize: 26, color: T.emerald },
+  dropText: { fontSize: 14, fontWeight: 600, color: T.ink, marginTop: 4 },
+  dropSub: { fontSize: 12.5, color: T.muted, marginTop: 3 },
+  thumbRow: { display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 },
+  thumbWrap: { position: "relative", width: 76, height: 76 },
+  thumb: { width: 76, height: 76, objectFit: "cover", borderRadius: 11, border: `1px solid ${T.line}` },
+  thumbX: { position: "absolute", top: -8, right: -8, width: 22, height: 22, borderRadius: "50%", border: "none", background: T.ink, color: "#fff", cursor: "pointer", fontSize: 15, lineHeight: "22px", padding: 0 },
+
+  textarea: { width: "100%", minHeight: 92, resize: "vertical", border: `1px solid ${T.line}`, borderRadius: 13, padding: "12px 14px", fontSize: 14.5, fontFamily: "inherit", color: T.ink, boxSizing: "border-box", background: "#FBFCFB", lineHeight: 1.55 },
+  toneRow: { display: "flex", gap: 8, flexWrap: "wrap" },
+  tone: { flex: "1 1 auto", border: `1px solid ${T.line}`, background: "#FBFCFB", color: T.muted, fontSize: 13, padding: "9px 10px", borderRadius: 11, cursor: "pointer", fontFamily: "inherit", fontWeight: 500 },
+  toneActive: { borderColor: T.emerald, background: T.emeraldSoft, color: T.emeraldDark, fontWeight: 600 },
+
+  generate: { width: "100%", marginTop: 22, background: `linear-gradient(180deg, ${T.emerald}, ${T.emeraldDark})`, color: "#fff", border: "none", borderRadius: 13, padding: "14px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 8px 22px -8px rgba(15,122,102,0.6)", letterSpacing: "0.01em" },
+  holding: { width: "100%", marginTop: 11, background: "#fff", color: T.emeraldDark, border: `1px solid ${T.emerald}`, borderRadius: 13, padding: "12px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" },
+  error: { marginTop: 12, background: T.redSoft, color: T.red, padding: "10px 12px", borderRadius: 11, fontSize: 13.5 },
+
+  empty: { textAlign: "center", padding: "54px 22px", color: T.muted },
+  emptyMark: { fontFamily: "'Fraunces', serif", fontSize: 46, color: T.gold, lineHeight: 0.5, opacity: 0.8 },
+  emptyTitle: { fontFamily: "'Fraunces', serif", fontWeight: 500, fontSize: 21, color: T.ink, marginTop: 20 },
+  emptyText: { fontSize: 13.5, marginTop: 10, lineHeight: 1.6, maxWidth: 330, marginLeft: "auto", marginRight: "auto" },
+
+  metaRow: { display: "flex", gap: 8, marginBottom: 14 },
+  tag: { fontSize: 12, fontWeight: 600, padding: "5px 12px", borderRadius: 999 },
+  replyLabel: { fontSize: 12, fontWeight: 600, color: T.muted, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 },
+  replyBox: { border: `1px solid ${T.line}`, borderLeft: `3px solid ${T.emerald}`, borderRadius: 13, padding: "16px 18px", fontSize: 14.5, lineHeight: 1.68, whiteSpace: "pre-wrap", background: "#FBFCFB", color: T.ink },
+  copyBtn: { marginTop: 11, background: T.ink, color: "#fff", border: "none", borderRadius: 11, padding: "10px 18px", fontSize: 13.5, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" },
+
+  coachBlock: { marginTop: 16, background: T.amberSoft, borderRadius: 13, padding: "13px 15px", borderLeft: `3px solid ${T.gold}` },
+  coachLabel: { fontSize: 11, fontWeight: 700, color: T.amber, textTransform: "uppercase", letterSpacing: "0.06em" },
+  coachText: { fontSize: 14, color: T.ink, marginTop: 5, lineHeight: 1.55 },
+
+  footer: { maxWidth: 1080, margin: "26px auto 0", padding: "0 24px", color: T.muted, fontSize: 12.5, textAlign: "center", display: "flex", gap: 10, justifyContent: "center", alignItems: "center", flexWrap: "wrap" },
+  footDot: { color: T.gold },
+};
+
+const css = `
+  .ta:focus { outline: none; border-color: ${T.emerald}; box-shadow: 0 0 0 3px ${T.emeraldSoft}; }
+  .drop:hover { border-color: ${T.emerald}; background: ${T.emeraldSoft}; }
+  .tone:hover { border-color: ${T.emerald}; }
+  .gen:hover:not(:disabled) { filter: brightness(1.06); }
+  .hold:hover:not(:disabled) { background: ${T.emeraldSoft}; }
+  .copy:hover { opacity: 0.9; }
+  @media (max-width: 720px) {
+    .support-grid { grid-template-columns: 1fr !important; }
+  }
+`;
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(SupportDesk));
+</script>
+</body>
+</html>
