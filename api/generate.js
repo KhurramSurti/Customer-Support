@@ -44,7 +44,12 @@ module.exports = async (req, res) => {
       }),
     });
     const data = await r.json();
-    res.status(r.status).json(data);
+    if (!r.ok) {
+      const detail = (data && data.error && (data.error.message || data.error.type)) || JSON.stringify(data).slice(0, 300);
+      res.status(r.status).json({ error: "Anthropic API: " + detail });
+      return;
+    }
+    res.status(200).json(data);
   } catch (e) {
     res.status(500).json({ error: String(e) });
   }
