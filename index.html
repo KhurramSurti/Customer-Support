@@ -218,11 +218,11 @@ function SupportDesk() {
         })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data && data.error || "request failed");
+      if (!res.ok) throw new Error(data && data.error || "HTTP " + res.status);
       const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
       setResult(extractJSON(text));
     } catch (e) {
-      setError("The reply didn't come through. Check your connection and try again.");
+      setError(String(e && e.message ? e.message : e));
     } finally {
       setLoading(false);
     }
@@ -255,7 +255,7 @@ function SupportDesk() {
         })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data && data.error || "request failed");
+      if (!res.ok) throw new Error(data && data.error || "HTTP " + res.status);
       const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n").trim();
       setChat([...next, {
         role: "assistant",
@@ -295,11 +295,11 @@ function SupportDesk() {
         })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data && data.error || "request failed");
+      if (!res.ok) throw new Error(data && data.error || "HTTP " + res.status);
       let text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n").trim();
       setTrResult(text.replace(/^["'“”]+|["'“”]+$/g, "").trim());
     } catch (e) {
-      setError("The translation didn't come through. Check your connection and try again.");
+      setError(String(e && e.message ? e.message : e));
     } finally {
       setLoading(false);
     }
